@@ -49,20 +49,26 @@ class Joystick(object):
         with open('/dev/hidg0', 'rb+') as f:
             f.write(report)
 
-    def _new_input(self):
-        ri = JoystickReportInput(button=0, hat=self.HAT_CENTER,
-                                 lx=self.STICK_CENTER, ly=self.STICK_CENTER,
-                                 rx=self.STICK_CENTER, ry=self.STICK_CENTER,
-                                 vendor_spec=0)
+    def _new_input(self,
+                   button=0x0,
+                   hat=HAT_CENTER,
+                   lx=STICK_CENTER,
+                   ly=STICK_CENTER,
+                   rx=STICK_CENTER,
+                   ry=STICK_CENTER,
+                   vendor_spec=0x0):
+        ri = JoystickReportInput(button=button,
+                                 hat=hat,
+                                 lx=lx,
+                                 ly=ly,
+                                 rx=rx,
+                                 ry=ry,
+                                 vendor_spec=vendor_spec)
         return ri
 
     def _press_button(self, button):
-        ri = self._new_input()
-        ri.button |= button
-        self._write_report(ri)
-
+        self._write_report(self._new_input(button=button))
         time.sleep(self.BUTTON_TIME)
-
         self._write_report(self._new_input())
 
     def press_a(self):
