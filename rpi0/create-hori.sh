@@ -4,8 +4,8 @@ set -x
 
 GADGET="/sys/kernel/config/usb_gadget"
 
-mkdir -p $GADGET/g0
-cd $GADGET/g0
+mkdir -p $GADGET/hori
+cd $GADGET/hori
 
 echo 0x0F0D > idVendor
 echo 0x0092 > idProduct
