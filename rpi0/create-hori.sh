@@ -16,7 +16,7 @@ echo 0x00 > bDeviceSubClass
 echo 0x00 > bDeviceProtocol
 
 mkdir -p strings/0x409
-echo "0123456789" > strings/0x409/serialnumber
+#echo "0123456789" > strings/0x409/serialnumber
 echo "HORI CO.,LTD." > strings/0x409/manufacturer
 echo "POKKEN CONTROLLER" > strings/0x409/product
 
